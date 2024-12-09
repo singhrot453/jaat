@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        /* Set the background image */
+        body {
+            background-image: url("https://th.bing.com/th/id/R.162c53d57f65f7be6e751f8450c90c1e?rik=susI1OsRX3idBg&riu=http%3a%2f%2fi2.cdn.cnn.com%2fcnnnext%2fdam%2fassets%2f161019091312-voter-registration-sign-super-tease.jpg&ehk=W8D9klaEGL6ahm0%2bD%2feKLeD8UQDngpSc7H%2bPNCFywYk%3d&risl=&pid=ImgRaw&r=0");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Center the container and style it */
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Style form elements and align labels and inputs to the left */
+        h2 {
+            text-align: center;
+        }
+
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Style the submit button */
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Transition effect when button is clicked */
+        .submit-btn:active {
+            background-color: #0056b3;
+            transform: scale(0.95);
+        }
+
+        /* Style for login ID display */
+        #loginId {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+    <form id="registrationForm">
+        <label for="email">Gmail:</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your Gmail">
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" name="mobile" required placeholder="Enter your mobile number" pattern="[0-9]{10}">
+
+        <button type="button" class="submit-btn" onclick="generateLoginId()">Submit</button>
+    </form>
+    
+    <div id="loginId"></div>
+</div>
+
+<script>
+    function generateLoginId() {
+        const email = document.getElementById("email").value;
+        const dob = document.getElementById("dob").value;
+        const mobile = document.getElementById("mobile").value;
+
+        if (email && dob && mobile) {
+            // Generate a simple login ID based on email and mobile number
+            const emailPart = email.split("@")[0]; // Get part before '@'
+            const mobilePart = mobile.slice(-4); // Last 4 digits of mobile number
+            const loginId = `${emailPart}_${mobilePart}`;
+
+            // Save the generated login ID in local storage
+            localStorage.setItem("loginId", loginId);
+
+            document.getElementById("loginId").innerHTML = `Your Login ID is: <strong>${loginId}</strong>`;
+            alert("Registration successful! Your Login ID has been saved. Use it on the login page.");
+        } else {
+            alert("Please fill in all fields.");
+        }
+    }
+</script>
+
+</body>
+</html>

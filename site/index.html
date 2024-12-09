@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Commission of India</title>
+    <style>
+        body {
+            background-image: url("https://akm-img-a-in.tosshub.com/businesstoday/images/story/201904/voter_660_041819023950.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: black;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+        }
+
+        marquee {
+            text-align: center;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 8px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: darkblue;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            list-style-type: square;
+        }
+
+        input[type="password"] {
+            margin-top: 10px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 1em;
+            color: white;
+            background-color: darkblue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: navy;
+            transform: scale(1.05);
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: darkblue;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            color: black;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Election Commission of India</h1>
+    <marquee behavior="alternate">Your Voice Matters</marquee>
+    <main>
+        <section>
+            <h2>Upcoming Elections</h2>
+            <ul>
+                <li>Election Name: President of India</li>
+                <li>Date: July 2027</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Featured Polls</h2>
+            <ul>
+                <li>Aam Aadmi Party</li>
+                <li>Indian National Congress</li>
+                <li>Bharatiya Janata Party</li>
+                <li>Bahujan Samaj Party</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Login/Registration</h2>
+            <label>Login</label><br>
+            <input type="password" id="loginInput" placeholder="Enter ID"><br>
+            <button onclick="login()">Submit</button>
+            <p>If you have no ID, please register here:</p>
+            <button><a href="file:///C:/Users/Lenovo/Desktop/reistration.html">Register</a></button>
+        </section>
+       
+        <section>
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="https://www.eci.gov.in/about-eci">Home</a></li>
+                <li><a href="https://www.eci.gov.in/about-eci">About ECI</a></li>
+                <li><a href="https://www.eci.gov.in/contact-us">Contact Us</a></li>
+                <li><a href="https://voters.eci.gov.in/">Apply for Voter Card</a></li>
+            </ul>
+        </section>
+    </main>
+    <script>
+        function login() {
+            // Retrieve the login ID entered by the user
+            const enteredId = document.getElementById("loginInput").value;
+            // Retrieve the stored login ID from local storage
+            const storedId = localStorage.getItem("loginId");
+
+            // Check if the entered ID matches the stored ID
+            if (enteredId === storedId) {
+                alert("Login successful!");
+                // Redirect to the voting system page
+                window.location.href = "file:///C:/Users/Lenovo/Desktop/simple%20voting%20system.html";
+            } else {
+                alert("Invalid ID. Please check and try again or register if you don't have an ID.");
+            }
+        }
+    </script>
+    
+    <footer>
+        <p>&copy; 2025 - Site Built by Vikas</p>
+        <p class="highlight">A single vote can be the deciding factor in an election. Your vote is your report card on lawmakers, and it's a powerful right for changing our future.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> voting system</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 24px;
+            color:blueviolet;
+        }
+        
+        .vikas{
+            background-image: url(https://t3.ftcdn.net/jpg/03/89/61/88/360_F_389618887_PImTbyGB4vTQOoGKxjhOKp2w7hZmcNAs.jpg);
+            background-size: cover;
+        }
+
+        .container {
+            display:flex;
+            flex-wrap: wrap;
+            border: 1px solid rgb(129, 213, 164);
+            border-radius: 10px;
+            background-image:url(vikas\ atm/ist\ page.jpg);
+            background-size:contain;
+            padding: 10px;
+            margin: auto;
+            height: 432px;
+            width: 60%;
+        }
+
+        .parties {
+            /* border: 2px solid black;
+            background-color: rgb(221, 255, 0); */
+            height: 250px;
+            width: 23%;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .partyLogo {
+            border: 2px solid red;
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 5px auto;
+            border-radius: 10px;
+        }
+
+        .vote {
+            width: 100%;
+            height: 50px;
+            padding: 5px;
+            border: 2px solid black;
+            background-color:black;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .vote {
+            width: 100%;
+            height: 50px;
+            padding: 5px;
+            margin: 12px auto;
+            border: 2px solid black;
+            background-color: rgb(205 233 55);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            
+        }
+
+        .vote:hover {
+            color: rgb(186, 186, 170);
+        }
+
+        .votes {
+            margin-left: 35px;
+            font-size: 20px;
+            color:black;
+            font-weight: bold;
+            
+        }
+
+        #showResult {
+            width: 50%;
+            height: 50px;
+            padding: 5px;
+            margin: auto;
+            border: 2px solid black;
+            background-color: #e6ed0ad1;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #showResult:hover {
+            color: rgb(154, 154, 137);
+        }
+        #voteAi{
+            width: 50%;
+            height: 50px;
+            padding: 5px;
+            margin: auto;
+            border: 2px solid black;
+            background-color:blueviolet;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="vikas">
+    <h1>One Nation One Election</h1>
+    <div class="container">
+        <div class="parties">
+            <img class="partyLogo" src="C:\Users\Lenovo\Desktop\vikas atm\bjp logo.jpg">
+            <button id="bjpVote" class="vote"> BJP Vote</button>
+            <p id="bjpResult" class="votes" >TOTAL Votes: </p>
+        </div>
+        <div class="parties">
+            <img class="partyLogo" src="C:\Users\Lenovo\Desktop\vikas atm\congress logo.jpg">
+            <button id="congressVote" class="vote">CONGRESS Vote</button>
+            <p id="congressResult" class="votes">TOTAL Votes: </p>
+        </div>
+        <div class="parties">
+            <img class="partyLogo" src="C:\Users\Lenovo\Desktop\vikas atm\aap logo.jpg">
+            <button id="aapVote" class="vote"> AAP Vote</button>
+            <p id="aapResult" class="votes"> TOTAL Votes: </p>
+        </div>
+        <div class="parties">
+            <img class="partyLogo" src="C:\Users\Lenovo\Desktop\vikas atm\bsp logo.jpg">
+            <button id="bspVote" class="vote">BSP Vote</button>
+            <p id="bspResult" class="votes">TOTAL Votes: </p>
+        </div>
+        <button id="showResult">Result</button>
+        <button id="voteAi"  onclick="startVoiceRecognition()">vote with speak</button>
+    </div>
+    <script>
+        let bjp_votes = 0;
+        let congress_votes = 0;
+        let aap_votes = 0;
+        let bsp_votes = 0;
+        let bjp_result = document.getElementById("bjpResult");
+        let congress_result = document.getElementById("congressResult");
+        let aap_result = document.getElementById("aapResult");
+        let bsp_result = document.getElementById("bspResult");
+
+        document.getElementById("bjpVote").addEventListener("click", () => {
+            bjp_votes++;
+            document.getElementById("bjpvote").style.display="none";
+            bjp_result.innerHTML = "votes:" + bjp_votes;
+        
+        })
+        document.getElementById("congressVote").addEventListener("click", () => {
+            congress_votes++;
+            document.getElementById("congressvote").style.display="none";
+            congress_result.innerHTML = "Votes: " + congress_votes;
+        })
+        document.getElementById("aapVote").addEventListener("click", () => {
+            aap_votes++;
+            document.getElementById("aapvote").style.display="none";
+            aap_result.innerHTML = "Votes: " + aap_votes;
+        })
+        document.getElementById("bspVote").addEventListener("click", () => {
+            bsp_votes++;
+            document.getElementById("bspvote").style.display="none";
+            bsp_result.innerHTML = "Votes: " + bsp_votes;
+        })
+
+        document.getElementById("showResult").addEventListener("click", () => {
+            if (bjp_votes > congress_votes && bjp_votes > aap_votes && bjp_votes > bsp_votes) {
+                //bjp_result.innerHTML = " BJP won the elections";
+                bjp_result.textContent="bjp won";
+                congress_result.innerHTML = "";
+                aap_result.innerHTML = "";
+                bsp_result.innerHTML = "";
+            } else if (congress_votes > aap_votes && congress_votes > bsp_votes && congress_votes > bjp_votes) {
+                bjp_result.innerHTML = " ";
+                congress_result.innerHTML = " Congress won the elections";
+                aap_result.innerHTML = " ";
+                bsp_result.innerHTML = " ";
+            } else if (aap_votes > bsp_votes && aap_votes > congress_votes && aap_votes > bjp_votes) {
+                bjp_result.innerHTML = "";
+                congress_result.innerHTML = "";
+                aap_result.innerHTML = " AAP won the elections";
+                bsp_result.innerHTML = "";
+            } else if (bsp_votes > congress_votes && bsp_votes > aap_votes && bsp_votes > bjp_votes) {
+                bjp_result.innerHTML = "";
+                congress_result.innerHTML = "";
+                aap_result.innerHTML = "";
+                bsp_result.innerHTML = " BSP won the elections";
+            }
+            else {
+                bjp_result.innerHTML = " NO Result";
+                congress_result.innerHTML = " NO Result";
+                aap_result.innerHTML = " NO Result";
+                bsp_result.innerHTML = " NO Result";
+            }
+            bjp_votes = 0;
+            congress_votes = 0;
+            aap_votes = 0;
+            bsp_votes = 0;
+        });
+        // Voice Command Functionality
+        function startVoiceRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const command = event.results[0][0].transcript.toLowerCase();
+
+                if (command.includes("vote bjp")) {
+                    document.getElementById("bjpVote").click();
+                } else if (command.includes("vote congress")) {
+                    document.getElementById("congressVote").click();
+                } else if (command.includes("vote aap")) {
+                    document.getElementById("aapVote").click();
+                } else if (command.includes("vote bsp")) {
+                    document.getElementById("bspVote").click();
+                } else {
+                    alert("Command not recognized. Please say 'Vote BJP,' 'Vote Congress,' 'Vote AAP,' or 'Vote BSP'.");
+                }
+            };
+
+            recognition.onerror = function(event) {
+                alert("Error occurred in recognition: " + event.error);
+            };
+
+            recognition.onend = function() {
+                alert("Voice command ended. Say a command to vote again.");
+            };
+        }
+    </script>
+</body>
+</html>
